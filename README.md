@@ -1,1 +1,3 @@
-secoquianlist
+# Shopping List
+
+Weekly updates
