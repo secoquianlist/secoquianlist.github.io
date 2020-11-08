@@ -80,7 +80,7 @@ function displayshoppingLists()
 
     for (var i = 0; i < shoppingLists.length; i++) 
       {
-        var btndelete =  ' <input class="button" id="remove" name="delete" type="button" value="Remove Item" onclick="deleteshoppingLists(' + i + ')" />';
+        var btndelete =  ' <input class="button" id="remove" name="delete" type="button" value="Remove" onclick="deleteshoppingLists(' + i + ')" />';
         var arrays = shoppingLists[i];
         arrays = "'" + arrays + "'";
         var btnaddcart =  '<label><input name="add" type="checkbox" id="adds" value="Add to Shopping Cart" onclick="addtoshopCart('+arrays+',' + i + ')" />Add</label>';
@@ -105,7 +105,7 @@ function displayshoppingCart()
     var arrayLength = addtoCart.length;
     for (var i = 0; i < arrayLength; i++) 
       {
-        var btndelete =  ' <input class="button" id="remove" name="delete" type="button" value="Remove Item" onclick="deleteshoppingCart(' + i + ')" />';
+        var btndelete =  ' <input class="button" id="remove" name="delete" type="button" value="Remove" onclick="deleteshoppingCart(' + i + ')" />';
         var arrays = addtoCart[i];
         arrays = "'"+arrays+"'";
         var btnaddlist =  '<label><input name="add" type="checkbox" id="adds" value="Add to Shopping List" onclick="addbacktoshoppingLists('+arrays+',' + i + ')" checked="checked"/>Add</label>';
