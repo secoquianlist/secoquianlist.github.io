@@ -1,18 +1,37 @@
 *:focus {
     outline: none;
 }
-body {
-    font: 14px/21px"Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+a:link {
+    color: white;
+}
+/* visited link */
+a:visited {
+    color: white;
 }
 
+/* mouse over link */
+a:hover {
+    color: hotpink;
+}
+
+/* selected link */
+a:active {
+    color: white;
+}
+body {
+    font: 14px/21px"Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+    background-color: #eace00;
+}
+#footer {
+    margin:2px; background:#0a0f9e; color:#ffdb17;text-align:center;font-size:x-small;
+    }
 label {
-     float:right;
+     float:left;
     padding-right: 15px;
     text-indent: 5px;
 }
-
 #wrapper {
-    width:500px;
+    width:300px;
     margin:20px auto;
     padding:20px;
     border-radius: 5px 5px 0 0;
@@ -26,33 +45,41 @@ h1 {
     font-size: 24px;
     text-align:center;
 }
-
 input#item {
     float:left;
-    margin-bottom:20px;
+    margin-bottom:5px;
 }
 input#remove {
-    float:left;
-    margin-bottom:20px;
-    margin-right:20px;
-    background-color: #f44165;
-     color: #FFFFFF;
-}
-input#adds {
     float:right;
     margin-bottom:20px;
-    margin-right:20px;
+    margin-right:5px;
+    background-color: #0a0f9e;
+     color: #ffffff;
+     font-size:smaller;
+      width: 65px;
+}
+input#adds {
+    float:left;
+    margin-bottom:10px;
+    margin-right:5px;
+    margin-left:10px;
+     margin-top:5px;
     background-color: #f44165;
      color: #FFFFFF;
+      font-size:smaller;
 }
 input[type=checkbox] {
-    vertical-align:right;
-    margin: 0 5px;
+    vertical-align:middle;
 }
 input[type=button] {
     vertical-align:middle;
-    margin: 40 5px;
-    background-color: #71D09B;
+    float:right;
+    margin-bottom:10px;
+    margin-right:1,5;
+    margin-left:10px;
+    background-color: #0a0f9e;
+    color: #FFFFFF;
+    width: 60px;
 }
 ul {
     list-style-type:none;
@@ -99,6 +126,10 @@ form a:hover {
     border: 1px solid #1D5837;
     color: #FFFFFF;
     text-shadow: 0 -1px 0 #1D5837;
+}
+#labels {
+     margin:2px; background:#0a0f9e; color:#ffffff;text-align:center;font-size:small;
+}
 }
 form a:active {
     border-color: #1D5837;
