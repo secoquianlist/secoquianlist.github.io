@@ -1,30 +1,36 @@
 <!doctype html>
 <html>
   <head>
+    <title>Secoquian List</title>
     <link rel="stylesheet" href="style.css">
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content=""> 
-
-    <script src="script.js"></script>
-    
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="SecoquianList" content="Add to Home">
+    <meta name="description" content="JS App Created by RVC Web233 Students">
+    <meta name="author" content="Justin Secoquian"> 
   </head>
 
   <body>
+    <script src="script.js"></script>
     <div id = "wrapper">
 
-      <h1>Shopping List Version 4</h1>
+      <h1>Shopping List</h1>
 
-      <input type="text" id="item" name="item" />&nbsp;Name<br><br>
-      <input type="text" id="cost" name="cost" />&nbsp;Cost<br><br>
+      <label>Item</label><input type="text" id="item" name="item" onkeydown = "if (event.keyCode == 13) 
+         document.getElementById('btnSubmit').click()" maxlength="18" placeholder="enter item < 19 characters"/>
 
-      <input class="button" name="submit" type="button" value="+Add" onclick="addshoppingLists(item.value, cost.value)" />
+      <input class="button" name="submit" type="button" value="+Add" onclick="addshoppingLists(item.value)" />
 
       <p id = "MyList"></p>
+      
+      <p id="labels"></p>
+      
       <p id = "MyCart"></p>
 
     </div>
