@@ -1,8 +1,3 @@
-// Justin Secoquian
-// Fall 2020
-// Web233 Javascript
-// Date: Nov. 8, 2020
-// Assignment #13
 
 window.onload = function()
   {
