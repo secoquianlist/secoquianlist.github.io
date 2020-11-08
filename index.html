@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content=""> 
+
+    <script src="script.js"></script>
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <div id = "wrapper">
+
+      <h1>Shopping List Version 4</h1>
+
+      <input type="text" id="item" name="item" />&nbsp;Name<br><br>
+      <input type="text" id="cost" name="cost" />&nbsp;Cost<br><br>
+
+      <input class="button" name="submit" type="button" value="+Add" onclick="addshoppingLists(item.value, cost.value)" />
+
+      <p id = "MyList"></p>
+      <p id = "MyCart"></p>
+
+    </div>
+  </body>
+</html>
