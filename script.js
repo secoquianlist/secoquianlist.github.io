@@ -172,6 +172,7 @@ function displayDestinationList()
 
 function displayTravelBucket() 
   {
+    document.getElementById("MyCart").innerHTML = ''
     var TheList = "";
     var TheRow = "";
     var arrayLength = addtoTravelBucket.length;
@@ -181,7 +182,7 @@ function displayTravelBucket()
         var btnupdate =  ' <input class="button" name="edit" type="button" value="Edit Item" onclick="changeTravelBucket(' + i + ')" />';
         var arrays = addtoTravelBucket[i];
         arrays = "'"+arrays+"'";
-        var btnaddlist =  '<label><input name="add" type="checkbox" id="adds" value="Add to Destination List" onclick="addbacktoDestinationList('+arrays+',' + i + ')" checked="checked"/>Add</label>';
+        var btnaddlist =  '<label><input name="add" type="checkbox" id="adds" value="Add to Destination List" onclick="addbacktoDestinationList('+arrays+',' + i + ')" checked="checked"/>';
         
         TheRow = "<li>" + addtoTravelBucket[i] + btndelete + ' ' + ' ' + btnaddlist + '<br></li>';
 
