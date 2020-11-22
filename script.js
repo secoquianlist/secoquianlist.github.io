@@ -1,7 +1,7 @@
 
 window.onload = function()
   {
-    alert("Welcome to 'Shopping List' App!\n\nCreated by Rock Valley College\n**Javascript(Web233) Students**\n\nQuestions?\nemail Professor Chuck Konkol\nc.konkol@rockvalleycollege.edu\n\nRegister @ RockValleyCollege.edu");
+    alert("Welcome to 'Destination List' App!\n\nCreated by Rock Valley College\n**Javascript(Web233) Students**\n\nQuestions?\nemail Professor Chuck Konkol\nc.konkol@rockvalleycollege.edu\n\nRegister @ RockValleyCollege.edu");
     populateshoppingListsonload();
     displayShoppinglists();
     clearFocus();
@@ -22,7 +22,7 @@ function get(name)
 
 function passlist()
 {
- var url = "https://secoquianlist.github.io/index.html?list="+ shoppinglist;
+ var url = "https://secoquianlist.github.io/index.html?list="+ shoppingLists;
     var accessToken = "b48efbd91f4c4f45b03ca0f333f0bd74e17bb72d";
 
     var params = {
