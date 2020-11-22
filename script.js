@@ -12,7 +12,7 @@ function get(name)
     var url = window.location.search;
     var num = url.search(name);
     var namel = name.length;
-    var frontlength = namel+num+1; //length of everything before the value
+    var frontlength = namel+num+1;
     var front = url.substring(0, frontlength);
     url = url.replace(front, "");
     num = url.search("&");
@@ -21,11 +21,34 @@ function get(name)
   }
 
 function passlist()
-  {
-    var url = "https://rvclist.github.io/rvclist14/index.html?list="+ shoppinglist;
-    document.getElementById("sharelist").innerHTML = 'Share List:\n' + url;
-    copyToClipboard(url);
-  }
+{
+ var url = "https://secoquianlist.github.io/index.html?list="+ shoppinglist;
+    var accessToken = "b48efbd91f4c4f45b03ca0f333f0bd74e17bb72d";
+
+    var params = {
+        "long_url" : url           
+    };
+
+    $.ajax({
+        url: "https://api-ssl.bitly.com/v4/shorten",
+        cache: false,
+        dataType: "json",
+        method: "POST",
+        contentType: "application/json",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "Bearer " + accessToken);
+        },
+        data: JSON.stringify(params)
+    }).done(function(data) {
+        
+         getshorturl = 1;
+         document.getElementById("sharelist").innerHTML = 'Share List:\n' + data.link;
+         copyToClipboard(data.link);
+    }).fail(function(data) {
+      document.getElementById("sharelist").innerHTML = 'Share List:\n' + url;
+      copyToClipboard(url);
+    });
+}
 
 function share()
   {
@@ -34,14 +57,7 @@ function share()
 
 function copyToClipboard(text) 
   {
-   var passbyurl = document.createElement("textarea");
-   passbyurl.value = text;
-   document.body.appendChild(passbyurl);
-   passbyurl.focus();
-   passbyurl.select();
-   document.execCommand("copy");
-   document.body.removeChild(passbyurl);
-   alert("URL has been copied. Ready to share: " + text);
+   window.prompt("Copy & Share List!", text);
   }
 
 function about()
