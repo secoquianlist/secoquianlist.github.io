@@ -2,8 +2,8 @@
 window.onload = function()
   {
     alert("Welcome to 'Destination List' App!\n\nCreated by Rock Valley College\n**Javascript(Web233) Students**\n\nQuestions?\nemail Professor Chuck Konkol\nc.konkol@rockvalleycollege.edu\n\nRegister @ RockValleyCollege.edu");
-    populateshoppingListsonload();
-    displayShoppinglists();
+    populateDestinationListonload();
+    displayDestinationList();
     clearFocus();
   };
 
@@ -21,13 +21,12 @@ function get(name)
   }
 
 function passlist()
-{
- var url = "https://secoquianlist.github.io/index.html?list="+ shoppingLists;
+  {
+    var url = "https://secoquianlist.github.io/index.html?list="+ DestinationList;
     var accessToken = "b48efbd91f4c4f45b03ca0f333f0bd74e17bb72d";
-
     var params = {
         "long_url" : url           
-    };
+      };
 
     $.ajax({
         url: "https://api-ssl.bitly.com/v4/shorten",
@@ -62,7 +61,7 @@ function copyToClipboard(text)
 
 function about()
   {
-    alert("Welcome to 'Shopping List' App!\n\nCreated by Rock Valley College\n**Javascript(Web233) Students**\n\nQuestions?\nemail Professor Chuck Konkol\nc.konkol@rockvalleycollege.edu\n\nRegister @ RockValleyCollege.edu");
+    alert("Welcome to 'Destination List' App!\n\nCreated by Rock Valley College\n**Javascript(Web233) Students**\n\nQuestions?\nemail Professor Chuck Konkol\nc.konkol@rockvalleycollege.edu\n\nRegister @ RockValleyCollege.edu");
   }
 
 function readCookie(name)
@@ -95,7 +94,7 @@ function saveCookie()
     delete_cookie('secoquianlist')
     var date = new Date();
       date.setTime(date.getTime() + Number(365) * 3600 * 1000);
-      document.cookie = 'secoquianlist' + "=" + escape(shoppingLists.join(',')) + "; path=/;expires = " + date.toGMTString();
+      document.cookie = 'secoquianlist' + "=" + escape(DestinationList.join(',')) + "; path=/;expires = " + date.toGMTString();
   }
 
 function delete_cookie(name)
@@ -103,10 +102,10 @@ function delete_cookie(name)
     document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
   }
 
-function populateshoppingListsonload()
+function populateDestinationListonload()
   {
-    shoppingLists = [];
-    addtoCart = [];
+    DestinationList = [];
+    TravelBucket = [];
 
     var y = readCookie('secoquianlist');
     y = remove_unwanted(y);
@@ -116,11 +115,11 @@ function populateshoppingListsonload()
       {
        geturllistvalue = remove_unwanted(geturllistvalue);
        geturllistvalue = geturllistvalue.split(',');
-       shoppinglist = geturllistvalue;
+       DestinationList = geturllistvalue;
       } else if (y)
         {
          y = y.split('%2C');
-         shoppinglist = y;
+         DestinationList = y;
         }
    }
 
@@ -130,22 +129,22 @@ var MyItems =
     price:""
   };
 
-var shoppingLists = [];
-var addtoCart = [];
+var DestinationList = [];
+var TravelBucket = [];
 
-function displayshoppingLists() 
+function displayDestinationList() 
   {
     var TheList = "";
-    var arrayLength = shoppingLists.length;
+    var arrayLength = DestinationList.length;
 
-    for (var i = 0; i < shoppingLists.length; i++) 
+    for (var i = 0; i < DestinationList.length; i++) 
       {
-        var btndelete =  ' <input class="button" id="remove" name="delete" type="button" value="Remove" onclick="deleteshoppingLists(' + i + ')" />';
-        var arrays = shoppingLists[i];
+        var btndelete =  ' <input class="button" id="remove" name="delete" type="button" value="Remove" onclick="deleteDestinationList(' + i + ')" />';
+        var arrays = DestinationList[i];
         arrays = "'" + arrays + "'";
-        var btnaddcart =  '<label><input name="add" type="checkbox" id="adds" value="Add to Shopping Cart" onclick="addtoshopCart('+arrays+',' + i + ')" />Add</label>';
+        var btnaddcart =  '<label><input name="add" type="checkbox" id="adds" value="Add to Travel Bucket" onclick="addtoTravelBucket('+arrays+',' + i + ')" />Add</label>';
 
-        TheRow = "<li>" + shoppingLists[i] + btndelete + ' ' + ' ' + btnaddcart + '</li>';
+        TheRow = "<li>" + DestinationList[i] + btndelete + ' ' + ' ' + btnaddcart + '</li>';
 
         TheList += TheRow;
       }
@@ -159,27 +158,27 @@ function displayshoppingLists()
         }
   }
 
-function displayshoppingCart() 
+function displayTravelBucket() 
   {
     var TheList = "";
     var TheRow = "";
-    var arrayLength = addtoCart.length;
+    var arrayLength = addtoTravelBucket.length;
     for (var i = 0; i < arrayLength; i++) 
       {
-        var btndelete =  ' <input class="button" id="remove" name="delete" type="button" value="Remove" onclick="deleteshoppingCart(' + i + ')" />';
-        var arrays = addtoCart[i];
+        var btndelete =  ' <input class="button" id="remove" name="delete" type="button" value="Remove" onclick="deleteTravelBucket(' + i + ')" />';
+        var arrays = addtoTravelBucket[i];
         arrays = "'"+arrays+"'";
-        var btnaddlist =  '<label><input name="add" type="checkbox" id="adds" value="Add to Shopping List" onclick="addbacktoshoppingLists('+arrays+',' + i + ')" checked="checked"/>Add</label>';
+        var btnaddlist =  '<label><input name="add" type="checkbox" id="adds" value="Add to Destination List" onclick="addbacktoDestinationList('+arrays+',' + i + ')" checked="checked"/>Add</label>';
 
-        var btnsharelist = '<input class="button" id="shares" name="shares" type="submit" value="Share Shopping List" onclick="share()" />';
+        var btnsharelist = '<input class="button" id="shares" name="shares" type="submit" value="Share Destination List" onclick="share()" />';
         
-        TheRow = "<li>" + addtoCart[i] + btndelete + ' ' + ' ' + btnaddlist + '<br></li>';
+        TheRow = "<li>" + addtoTravelBucket[i] + btndelete + ' ' + ' ' + btnaddlist + '<br></li>';
 
         TheList += TheRow;
       }
     if (arrayLength > 0)
       {
-        document.getElementById("MyCart").innerHTML = 'Shopping Cart ' + '<br><ul>' + TheList + '</ul>';
+        document.getElementById("MyCart").innerHTML = 'Travel Bucket ' + '<br><ul>' + TheList + '</ul>';
         document.getElementById("sharebutton").innerHTML = btnsharelist;
       } else 
         {
@@ -189,14 +188,14 @@ function displayshoppingCart()
         }
     }
 
-function addshoppingLists(item)
+function addDestinationList(item)
   {
     if (item != "")
       {
         document.getElementById("sharelist").innerHTML = ' ';
-        shoppinglist.push(item);
-        displayShoppinglists();
-        displayShoppingCart(); 
+        DestinationList.push(item);
+        displayDestinationList();
+        displayTravelBucket(); 
         clearFocus();
         savecookie();
          }else {
@@ -205,9 +204,9 @@ function addshoppingLists(item)
            }
       }
 
-function changeshoppingLists(position)
+function changeDestinationList(position)
   {
-    var arrays = shoppingLists[position];
+    var arrays = DestinationList[position];
     arrays = arrays.split(",");
       var e1 = arrays[0];
       var e2 = arrays [1];
@@ -215,16 +214,16 @@ function changeshoppingLists(position)
     var ReplacedAmount = e2.replace(/\$/g, '');
       var eitem = prompt("Please enter new item:", e1);
       var ecost = prompt("Please enter your name:", ReplacedAmount);
-      shoppingLists[position] = eitem + "," + '$' + ecost;
-      displayshoppingLists();
-      displayshoppingCart();
+      DestinationList[position] = eitem + "," + '$' + ecost;
+      displayDestinationList();
+      displayTravelBucket();
       
       saveCookie();
   }
 
-function changeshoppingCart(position)
+function changeTravelBucket(position)
   {
-    document.getElementById("MyCart").innerHTML = shoppingLists[position];
+    document.getElementById("MyCart").innerHTML = DestinationList[position];
     var arrays = addtoCart[position];
     arrays = arrays.split(",");
       var e1 = arrays[0];
@@ -233,54 +232,54 @@ function changeshoppingCart(position)
     var ReplacedAmount = e2.replace(/\$/g, '');
       var eitem = prompt("Please enter new item:", e1);
       var ecost = prompt("Please enter your name:", ReplacedAmount);
-      shoppingLists[position] = eitem + "," + '$' + ecost;
-      displayshoppingLists();
-      displayshoppingCart();
+      DestinationList[position] = eitem + "," + '$' + ecost;
+      displayDestinationList();
+      displayTravelBucket();
 
       saveCookie();
   }
 
-function addbacktoshoppingLists(item, num)
+function addbacktoDestinationList(item, num)
   {
-    deleteshoppingCart(num);
-    shoppingLists.push(item);
+    deleteTravelBucket(num);
+    DestinationList.push(item);
     
-    displayshoppingLists();
+    displayDestinationList();
 
-    displayshoppingCart();
+    displayTravelBucket();
     clearFocus();
 
     saveCookie();
   }
 
-function addtoshopCart(item, num)
+function addtoTravelBucket(item, num)
   {
     document.getElementById("sharelist").innerHTML = ' ';
-    deleteshoppingLists(num);
-    addtoCart.push(item);
+    deleteDestinationList(num);
+    addtoTravelBucket.push(item);
     
-    displayshoppingLists();
+    displayDestinationList();
 
-    displayshoppingCart();
+    displayTravelBucket();
     clearFocus();
 
     saveCookie();
   }
 
-function deleteshoppingLists(position)
+function deleteDestinationList(position)
   {
-    shoppingLists.splice(position, 1);
-    displayshoppingLists();
-    displayshoppingCart();
+    DestinationList.splice(position, 1);
+    displayDestinationList();
+    displayTravelBucket();
 
     saveCookie();
   }
 
-function deleteshoppingCart(position)
+function deleteTravelBucket(position)
   {
     addtoCart.splice(position, 1);
-    displayshoppingLists();
-    displayshoppingCart();
+    displayDestinationList();
+    displayTravelBucket();
   }
 
 function clearFocus()
