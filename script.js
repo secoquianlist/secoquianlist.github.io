@@ -142,15 +142,17 @@ var TravelBucket = [];
 
 function displayDestinationList() 
   {
+    document.getElementById("MyList").innerHTML = ''
     var TheList = "";
     var arrayLength = DestinationList.length;
 
     for (var i = 0; i < DestinationList.length; i++) 
       {
         var btndelete =  ' <input class="button" id="remove" name="delete" type="button" value="Remove" onclick="deleteDestinationList(' + i + ')" />';
+        var btnupdate =  ' <input class="button" name="edit" type="button" value="Edit Item" onclick="changeDestinationList(' + i + ')" />';
         var arrays = DestinationList[i];
         arrays = "'" + arrays + "'";
-        var btnaddcart =  '<label><input name="add" type="checkbox" id="adds" value="Add to Travel Bucket" onclick="addtoTravelBucket('+arrays+',' + i + ')" />Add</label>';
+        var btnaddcart =  '<label><input name="add" type="checkbox" id="adds" value="Add to Travel Bucket" onclick="addtoTravelBucket('+arrays+',' + i + ')" />';
         var btnsharelist = '<input class="button" id="shares" name="shares" type="submit" value="Share Destination List" onclick="share()" />';
 
         TheRow = "<li>" + DestinationList[i] + btndelete + ' ' + ' ' + btnaddcart + '</li>';
