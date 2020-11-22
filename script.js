@@ -194,8 +194,8 @@ function displayTravelBucket()
         document.getElementById("MyCart").innerHTML = '<ul>' + TheList + '</ul>';
       } else 
         {
-          document.getElementById("MyCart").innerHTML = '';
           document.getElementById("labels").innerHTML = '';
+          document.getElementById("MyCart").innerHTML = '';
         }
     }
 
