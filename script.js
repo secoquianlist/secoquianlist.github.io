@@ -56,7 +56,14 @@ function share()
 
 function copyToClipboard(text) 
   {
-   window.prompt("Copy & Share List!", text);
+    var passbyurl = document.createElement("textarea");
+    passbyurl.value = text;
+    document.body.appendChild(passbyurl);
+    passbyurl.focus();
+    passbyurl.select();
+    document.execCommand("copy");
+    document.body.removeChild(passbyurl);
+    alert("URL has been copied. Ready to share: " + text);
   }
 
 function about()
@@ -77,13 +84,14 @@ function readCookie(name)
     return null;
   }
 
-function ReplacedAmount(str)
+function remove_unwanted(str)
   {
     if ((str===null) || (str===''))
       return false;
     else
       str = str.toString();
       str = str.replace(/%20/g, "");
+      str = str.replace(/%21/g, "!");
       str = str.replace(/%24/g, "$");
       str = str.replace(/%7C/g, " | ");
       return str.replace(/[^\x20-\x7E]/g, '');
@@ -143,6 +151,7 @@ function displayDestinationList()
         var arrays = DestinationList[i];
         arrays = "'" + arrays + "'";
         var btnaddcart =  '<label><input name="add" type="checkbox" id="adds" value="Add to Travel Bucket" onclick="addtoTravelBucket('+arrays+',' + i + ')" />Add</label>';
+        var btnsharelist = '<input class="button" id="shares" name="shares" type="submit" value="Share Destination List" onclick="share()" />';
 
         TheRow = "<li>" + DestinationList[i] + btndelete + ' ' + ' ' + btnaddcart + '</li>';
 
@@ -155,6 +164,9 @@ function displayDestinationList()
       } else 
         {
           document.getElementById("MyList").innerHTML = '';
+          
+          document.getElementById("sharebutton").innerHTML = ' ';
+          document.getElementById("sharelist").innerHTML = ' ';
         }
   }
 
@@ -166,11 +178,10 @@ function displayTravelBucket()
     for (var i = 0; i < arrayLength; i++) 
       {
         var btndelete =  ' <input class="button" id="remove" name="delete" type="button" value="Remove" onclick="deleteTravelBucket(' + i + ')" />';
+        var btnupdate =  ' <input class="button" name="edit" type="button" value="Edit Item" onclick="changeTravelBucket(' + i + ')" />';
         var arrays = addtoTravelBucket[i];
         arrays = "'"+arrays+"'";
         var btnaddlist =  '<label><input name="add" type="checkbox" id="adds" value="Add to Destination List" onclick="addbacktoDestinationList('+arrays+',' + i + ')" checked="checked"/>Add</label>';
-
-        var btnsharelist = '<input class="button" id="shares" name="shares" type="submit" value="Share Destination List" onclick="share()" />';
         
         TheRow = "<li>" + addtoTravelBucket[i] + btndelete + ' ' + ' ' + btnaddlist + '<br></li>';
 
@@ -178,13 +189,12 @@ function displayTravelBucket()
       }
     if (arrayLength > 0)
       {
-        document.getElementById("MyCart").innerHTML = 'Travel Bucket ' + '<br><ul>' + TheList + '</ul>';
-        document.getElementById("sharebutton").innerHTML = btnsharelist;
+        document.getElementById("labels").innerHTML = 'Visited';
+        document.getElementById("MyCart").innerHTML = '<ul>' + TheList + '</ul>';
       } else 
         {
           document.getElementById("MyCart").innerHTML = '';
-          document.getElementById("sharebutton").innerHTML = ' ';
-          document.getElementById("sharelist").innerHTML = ' ';
+          document.getElementById("labels").innerHTML = '';
         }
     }
 
@@ -224,7 +234,7 @@ function changeDestinationList(position)
 function changeTravelBucket(position)
   {
     document.getElementById("MyCart").innerHTML = DestinationList[position];
-    var arrays = addtoCart[position];
+    var arrays = addtoTravelBucket[position];
     arrays = arrays.split(",");
       var e1 = arrays[0];
       var e2 = arrays[1];
@@ -268,6 +278,7 @@ function addtoTravelBucket(item, num)
 
 function deleteDestinationList(position)
   {
+    document.getElementById("sharelist").innerHTML = ' ';
     DestinationList.splice(position, 1);
     displayDestinationList();
     displayTravelBucket();
@@ -277,14 +288,15 @@ function deleteDestinationList(position)
 
 function deleteTravelBucket(position)
   {
-    addtoCart.splice(position, 1);
+    document.getElementById("sharelist").innerHTML = ' ';
+    addtoTravelBucket.splice(position, 1);
     displayDestinationList();
     displayTravelBucket();
   }
 
 function clearFocus()
   {
-    document.getElementById("cost").value = "";
+    //document.getElementById("cost").value = "";
     
     document.getElementById("item").value = "";
     document.getElementById("item").focus();
