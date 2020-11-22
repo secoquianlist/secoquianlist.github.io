@@ -39,15 +39,14 @@ function passlist()
         },
         data: JSON.stringify(params)
     }).done(function(data) {
-        
-         getshorturl = 1;
-         document.getElementById("sharelist").innerHTML = 'Share List:\n' + data.link;
-         copyToClipboard(data.link);
+        getshorturl = 1;
+        document.getElementById("sharelist").innerHTML = 'Share List:\n' + data.link;
+        copyToClipboard(data.link);
     }).fail(function(data) {
-      document.getElementById("sharelist").innerHTML = 'Share List:\n' + url;
-      copyToClipboard(url);
+        document.getElementById("sharelist").innerHTML = 'Share List:\n' + url;
+        copyToClipboard(url);
     });
-}
+  }
 
 function share()
   {
@@ -101,8 +100,8 @@ function saveCookie()
   {
     delete_cookie('secoquianlist')
     var date = new Date();
-      date.setTime(date.getTime() + Number(365) * 3600 * 1000);
-      document.cookie = 'secoquianlist' + "=" + escape(DestinationList.join(',')) + "; path=/;expires = " + date.toGMTString();
+    date.setTime(date.getTime() + Number(365) * 3600 * 1000);
+    document.cookie = 'secoquianlist' + "=" + escape(DestinationList.join(',')) + "; path=/;expires = " + date.toGMTString();
   }
 
 function delete_cookie(name)
@@ -211,11 +210,12 @@ function addDestinationList(item)
         displayTravelBucket(); 
         clearFocus();
         savecookie();
-         }else {
+       }else 
+          {
             alert("Item Description Required: Please enter now :)");
             clearFocus();
-           }
-      }
+          }
+   }
 
 function changeDestinationList(position)
   {
