@@ -152,6 +152,7 @@ function displayshoppingLists()
     if (arrayLength > 0)
       {
         document.getElementById("MyList").innerHTML = '<ul>' + TheList + '</ul>';
+        document.getElementById("sharebutton").innerHTML = btnsharelist;
       } else 
         {
           document.getElementById("MyList").innerHTML = '';
@@ -188,33 +189,21 @@ function displayshoppingCart()
         }
     }
 
-function addshoppingLists(item,cost)
+function addshoppingLists(item)
   {
-    var groc = "";
-    var count = 0;
-    MyItems.name = item;
-    MyItems.price = cost;
-    
-    for (var x in MyItems)
+    if (item != "")
       {
-        if (count === 1){
-          groc += "$";
-        }
-        groc += MyItems[x];
-        if (count === 0){
-          groc += " | ";
-        }
-        count++;
+        document.getElementById("sharelist").innerHTML = ' ';
+        shoppinglist.push(item);
+        displayShoppinglists();
+        displayShoppingCart(); 
+        clearFocus();
+        savecookie();
+         }else {
+            alert("Item Description Required: Please enter now :)");
+            clearFocus();
+           }
       }
-
-    shoppingLists.push(groc);
-    displayshoppingLists();
-    
-    displayshoppingCart();
-    clearFocus();
-
-    saveCookie();
-  }
 
 function changeshoppingLists(position)
   {
@@ -266,6 +255,7 @@ function addbacktoshoppingLists(item, num)
 
 function addtoshopCart(item, num)
   {
+    document.getElementById("sharelist").innerHTML = ' ';
     deleteshoppingLists(num);
     addtoCart.push(item);
     
