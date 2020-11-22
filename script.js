@@ -1,7 +1,7 @@
 
 window.onload = function()
   {
-    alert("Welcome to 'Destination List' App!\n\nCreated by Rock Valley College\n**Javascript(Web233) Students**\n\nQuestions?\nemail Professor Chuck Konkol\nc.konkol@rockvalleycollege.edu\n\nRegister @ RockValleyCollege.edu");
+    alert("Welcome to the 'Destination List' App!\n\nCreated by Justin Secoquian!\n\nWith this app, you'll be able to list all of the places you want to visit or have visited already!");
     populateDestinationListonload();
     displayDestinationList();
     clearFocus();
@@ -67,7 +67,7 @@ function copyToClipboard(text)
 
 function about()
   {
-    alert("Welcome to 'Destination List' App!\n\nCreated by Rock Valley College\n**Javascript(Web233) Students**\n\nQuestions?\nemail Professor Chuck Konkol\nc.konkol@rockvalleycollege.edu\n\nRegister @ RockValleyCollege.edu");
+    alert("Welcome to the 'Destination List' App!\n\nCreated by Justin Secoquian!\n\nWith this app, you'll be able to list all of the places you want to visit or have visited already!");  
   }
 
 function readCookie(name)
