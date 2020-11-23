@@ -44,7 +44,7 @@ function passlist()
         copyToClipboard(data.link);
     }).fail(function(data) {
         document.getElementById("sharelist").innerHTML = 'Share List:\n' + url;
-        copyToClipboard(url);
+        copyToClipboard(URL);
     });
   }
 
