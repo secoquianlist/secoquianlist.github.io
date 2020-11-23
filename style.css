@@ -23,7 +23,7 @@ body {
     background-color: #3b75cc;
 }
 #footer {
-    margin:2px; background:#f2ed57; color:#3b75cc;text-align:center;font-size:x-small;
+    margin:2px; background:#3b75cc; color:#f2ed57;text-align:center;font-size:x-small;
     }
 label {
     float:left;
