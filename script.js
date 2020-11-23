@@ -248,10 +248,12 @@ function displayDestinationLists()
       }
     if (arrayLength > 0)
       {
+        document.getElementById("labels").innerHTML = 'Want To Go';
         document.getElementById("MyList").innerHTML = '<ul>' + TheList + '</ul>';
         document.getElementById("sharebutton").innerHTML = btnsharelist;
       } else 
         {
+          document.getElementById("labels").innerHTML = '';
           document.getElementById("MyList").innerHTML = '';
           
           document.getElementById("sharebutton").innerHTML = ' ';
