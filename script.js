@@ -2,7 +2,7 @@
 window.onload = function()
   {
     alert("Welcome to the 'Travel Bucket' App!\n\nCreated by Justin Secoquian!\n\nWith this app, you'll be able to list all of the places you want to visit or have visited already!");
-    populateDestinationListonload();
+    populatedestinationlistonload();
     displayDestinationList();
     clearFocus();
   };
@@ -22,7 +22,7 @@ function get(name)
 
 function passlist()
   {
-    var url = "https://secoquianlist.github.io/index.html?list="+ DestinationList;
+    var url = "https://secoquianlist.github.io/index.html?list="+ destinationlist;
     var accessToken = "b48efbd91f4c4f45b03ca0f333f0bd74e17bb72d";
     var params = {
         "long_url" : url           
@@ -101,7 +101,7 @@ function saveCookie()
     delete_cookie('secoquianlist')
     var date = new Date();
     date.setTime(date.getTime() + Number(365) * 3600 * 1000);
-    document.cookie = 'secoquianlist' + "=" + escape(DestinationList.join(',')) + "; path=/;expires = " + date.toGMTString();
+    document.cookie = 'secoquianlist' + "=" + escape(destinationlist.join(',')) + "; path=/;expires = " + date.toGMTString();
   }
 
 function delete_cookie(name)
@@ -109,10 +109,10 @@ function delete_cookie(name)
     document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
   }
 
-function populateDestinationListonload()
+function populatedestinationlistonload()
   {
-    DestinationList = [];
-    VisitList = [];
+    destinationist = [];
+    addtovisit= [];
 
     var y = readCookie('secoquianlist');
     y = remove_unwanted(y);
@@ -122,11 +122,11 @@ function populateDestinationListonload()
       {
        geturllistvalue = remove_unwanted(geturllistvalue);
        geturllistvalue = geturllistvalue.split(',');
-       DestinationList = geturllistvalue;
+       destinationlist = geturllistvalue;
       } else if (y)
         {
          y = y.split('%2C');
-         DestinationList = y;
+         destinationlist = y;
         }
    }
 
@@ -136,26 +136,113 @@ var MyItems =
     price:""
   };
 
-var DestinationList = [];
-var VisitList = [];
+var destinationlist = [];
+var addtovisit = [];
 
-function displayDestinationList() 
+function changeDestinationList(position)
+  {
+    var arrays = destinationlist[position];
+    arrays = arrays.split(",");
+      var e1 = arrays[0];
+      var e2 = arrays [1];
+
+    var ReplacedAmount = e2.replace(/\$/g, '');
+      var eitem = prompt("Please enter new item:", e1);
+      var ecost = prompt("Please enter your name:", ReplacedAmount);
+      destinationlist[position] = eitem + "," + '$' + ecost;
+      displayDestinationLists();
+      displayVisitList();
+      
+      saveCookie();
+  }
+
+function changeVisitList(position)
+  {
+    document.getElementById("MyCart").innerHTML = destinationlist[position];
+    var arrays = addtovisit[position];
+    arrays = arrays.split(",");
+      var e1 = arrays[0];
+      var e2 = arrays[1];
+    
+    var ReplacedAmount = e2.replace(/\$/g, '');
+      var eitem = prompt("Please enter new item:", e1);
+      var ecost = prompt("Please enter your name:", ReplacedAmount);
+      addtovisit[position] = eitem + "," + '$' + ecost;
+      displayDestinationLists();
+      displayVisitList();
+
+      saveCookie();
+  }
+
+function addbacktodestinationlist(item, num)
+  {
+    deleteVisitList(num);
+    destinationlist.push(item);
+    
+    displayDestinationLists();
+
+    displayVisitList();
+    clearFocus();
+
+    saveCookie();
+  }
+
+function addtovisitlist(item, num)
+  {
+    document.getElementById("sharelist").innerHTML = ' ';
+    deleteDestinationList(num);
+    addtovisit.push(item);
+    
+    displayDestinationLists();
+
+    displayVisitList();
+    clearFocus();
+
+    saveCookie();
+  }
+
+function addDestinationList(item)
+  {
+    if (item != "")
+      {
+        document.getElementById("sharelist").innerHTML = ' ';
+        destinationlist.push(item);
+        displayDestinationLists();
+        displayVisitList(); 
+        clearFocus();
+        savecookie();
+       }else 
+          {
+            alert("Item Description Required: Please enter now :)");
+            clearFocus();
+          }
+   }
+
+function clearFocus()
+  {
+    //document.getElementById("cost").value = "";
+    
+    document.getElementById("item").value = "";
+    document.getElementById("item").focus();
+  }
+
+function displayDestinationLists() 
   {
     document.getElementById("MyList").innerHTML = ''
     var TheList = "";
     var TheRow = "";
-    var arrayLength = DestinationList.length;
+    var arrayLength = destinationlist.length;
 
-    for (var i = 0; i < DestinationList.length; i++) 
+    for (var i = 0; i < destinationlist.length; i++) 
       {
-        var btndelete =  ' <input class="button" id="remove" name="delete" type="button" value="Remove" onclick="deleteDestinationList(' + i + ')" />';
+        var btndelete =  ' <input class="button" id="remove" name="delete" type="button" value="Remove" onclick="deleteDestinationLists(' + i + ')" />';
         var btnupdate =  ' <input class="button" name="edit" type="button" value="Edit Item" onclick="changeDestinationList(' + i + ')" />';
-        var arrays = DestinationList[i];
+        var arrays = destinationlist[i];
         arrays = "'"+arrays+"'";
-        var btnaddcart =  '<label><input name="add" type="checkbox" id="adds" value="Add to Visited List" onclick="addtoVisitList('+arrays+',' + i + ')" />';
+        var btnaddvisit =  '<label><input name="add" type="checkbox" id="adds" value="Add to Visited List" onclick="addtovisitlist('+arrays+',' + i + ')" />';
         var btnsharelist = '<input class="button" id="shares" name="shares" type="submit" value="Share Destination List" onclick="share()" />';
 
-        TheRow = "<li>" + DestinationList[i] + btndelete + ' ' + btnaddcart + '</li>';
+        TheRow = "<li>" + destinationlist[i] + btndelete + ' ' + btnaddvisit + '</li>';
 
         TheList += TheRow;
       }
@@ -177,16 +264,16 @@ function displayVisitList()
     document.getElementById("MyCart").innerHTML = ''
     var TheList = "";
     var TheRow = "";
-    var arrayLength = addtoVisitList.length;
+    var arrayLength = addtovisit.length;
     for (var i = 0; i < arrayLength; i++) 
       {
         var btndelete =  ' <input class="button" id="remove" name="delete" type="button" value="Remove" onclick="deleteVisitList(' + i + ')" />';
-        var btnupdate =  ' <input class="button" name="edit" type="button" value="Edit Item" onclick="changeTravelBucket(' + i + ')" />';
-        var arrays = addtoVisitList[i];
+        var btnupdate =  ' <input class="button" name="edit" type="button" value="Edit Item" onclick="changeVisitList(' + i + ')" />';
+        var arrays = addtovisit[i];
         arrays = "'"+arrays+"'";
-        var btnaddlist =  '<label><input name="add" type="checkbox" id="adds" value="Add to Destination List" onclick="addbacktoDestinationList('+arrays+',' + i + ')" checked="checked"/>';
+        var btnaddlist =  '<label><input name="add" type="checkbox" id="adds" value="Add to Destination List" onclick="addbacktodestinationlist('+arrays+',' + i + ')" checked="checked"/>';
         
-        TheRow = "<li>" + addtoVisitList[i] + btndelete + ' ' + ' ' + btnaddlist + '</li>';
+        TheRow = "<li>" + addtovisit[i] + btndelete + ' ' + ' ' + btnaddlist + '</li>';
 
         TheList += TheRow;
       }
@@ -201,90 +288,11 @@ function displayVisitList()
         }
     }
 
-function addDestinationList(item)
-  {
-    if (item != "")
-      {
-        document.getElementById("sharelist").innerHTML = ' ';
-        DestinationList.push(item);
-        displayDestinationList();
-        displayVisitList(); 
-        clearFocus();
-        savecookie();
-       }else 
-          {
-            alert("Item Description Required: Please enter now :)");
-            clearFocus();
-          }
-   }
-
-function changeDestinationList(position)
-  {
-    var arrays = DestinationList[position];
-    arrays = arrays.split(",");
-      var e1 = arrays[0];
-      var e2 = arrays [1];
-
-    var ReplacedAmount = e2.replace(/\$/g, '');
-      var eitem = prompt("Please enter new item:", e1);
-      var ecost = prompt("Please enter your name:", ReplacedAmount);
-      DestinationList[position] = eitem + "," + '$' + ecost;
-      displayDestinationList();
-      displayVisitList();
-      
-      saveCookie();
-  }
-
-function changeVisitList(position)
-  {
-    document.getElementById("MyCart").innerHTML = DestinationList[position];
-    var arrays = addtoVisitList[position];
-    arrays = arrays.split(",");
-      var e1 = arrays[0];
-      var e2 = arrays[1];
-    
-    var ReplacedAmount = e2.replace(/\$/g, '');
-      var eitem = prompt("Please enter new item:", e1);
-      var ecost = prompt("Please enter your name:", ReplacedAmount);
-      addtoVisitList[position] = eitem + "," + '$' + ecost;
-      displayDestinationList();
-      displayVisitList();
-
-      saveCookie();
-  }
-
-function addbacktoDestinationList(item, num)
-  {
-    deleteVisitList(num);
-    DestinationList.push(item);
-    
-    displayDestinationList();
-
-    displayVisitList();
-    clearFocus();
-
-    saveCookie();
-  }
-
-function addtoVisitList(item, num)
-  {
-    document.getElementById("sharelist").innerHTML = ' ';
-    deleteDestinationList(num);
-    addtoVisitList.push(item);
-    
-    displayDestinationList();
-
-    displayVisitList();
-    clearFocus();
-
-    saveCookie();
-  }
-
 function deleteDestinationList(position)
   {
     document.getElementById("sharelist").innerHTML = ' ';
-    DestinationList.splice(position, 1);
-    displayDestinationList();
+    destinationlist.splice(position, 1);
+    displayDestinationLists();
     displayVisitList();
 
     saveCookie();
@@ -293,15 +301,7 @@ function deleteDestinationList(position)
 function deleteVisitList(position)
   {
     document.getElementById("sharelist").innerHTML = ' ';
-    addtoVisitList.splice(position, 1);
-    displayDestinationList();
+    addtovisit.splice(position, 1);
+    displayDestinationLists();
     displayVisitList();
-  }
-
-function clearFocus()
-  {
-    //document.getElementById("cost").value = "";
-    
-    document.getElementById("item").value = "";
-    document.getElementById("item").focus();
   }
