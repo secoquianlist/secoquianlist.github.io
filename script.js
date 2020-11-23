@@ -112,7 +112,7 @@ function delete_cookie(name)
 function populateDestinationListonload()
   {
     DestinationList = [];
-    TravelBucket = [];
+    VisitList = [];
 
     var y = readCookie('secoquianlist');
     y = remove_unwanted(y);
@@ -137,7 +137,7 @@ var MyItems =
   };
 
 var DestinationList = [];
-var TravelBucket = [];
+var VisitList = [];
 
 function displayDestinationList() 
   {
@@ -152,7 +152,7 @@ function displayDestinationList()
         var btnupdate =  ' <input class="button" name="edit" type="button" value="Edit Item" onclick="changeDestinationList(' + i + ')" />';
         var arrays = DestinationList[i];
         arrays = "'"+arrays+"'";
-        var btnaddcart =  '<label><input name="add" type="checkbox" id="adds" value="Add to Travel Bucket" onclick="addtoTravelBucket('+arrays+',' + i + ')" />';
+        var btnaddcart =  '<label><input name="add" type="checkbox" id="adds" value="Add to Visited List" onclick="addtoVisitList('+arrays+',' + i + ')" />';
         var btnsharelist = '<input class="button" id="shares" name="shares" type="submit" value="Share Destination List" onclick="share()" />';
 
         TheRow = "<li>" + DestinationList[i] + btndelete + ' ' + btnaddcart + '</li>';
@@ -172,21 +172,21 @@ function displayDestinationList()
         }
   }
 
-function displayTravelBucket() 
+function displayVisitList() 
   {
     document.getElementById("MyCart").innerHTML = ''
     var TheList = "";
     var TheRow = "";
-    var arrayLength = addtoTravelBucket.length;
+    var arrayLength = addtoVisitList.length;
     for (var i = 0; i < arrayLength; i++) 
       {
-        var btndelete =  ' <input class="button" id="remove" name="delete" type="button" value="Remove" onclick="deleteTravelBucket(' + i + ')" />';
+        var btndelete =  ' <input class="button" id="remove" name="delete" type="button" value="Remove" onclick="deleteVisitList(' + i + ')" />';
         var btnupdate =  ' <input class="button" name="edit" type="button" value="Edit Item" onclick="changeTravelBucket(' + i + ')" />';
-        var arrays = addtoTravelBucket[i];
+        var arrays = addtoVisitList[i];
         arrays = "'"+arrays+"'";
         var btnaddlist =  '<label><input name="add" type="checkbox" id="adds" value="Add to Destination List" onclick="addbacktoDestinationList('+arrays+',' + i + ')" checked="checked"/>';
         
-        TheRow = "<li>" + addtoTravelBucket[i] + btndelete + ' ' + ' ' + btnaddlist + '</li>';
+        TheRow = "<li>" + addtoVisitList[i] + btndelete + ' ' + ' ' + btnaddlist + '</li>';
 
         TheList += TheRow;
       }
@@ -208,7 +208,7 @@ function addDestinationList(item)
         document.getElementById("sharelist").innerHTML = ' ';
         DestinationList.push(item);
         displayDestinationList();
-        displayTravelBucket(); 
+        displayVisitList(); 
         clearFocus();
         savecookie();
        }else 
@@ -230,15 +230,15 @@ function changeDestinationList(position)
       var ecost = prompt("Please enter your name:", ReplacedAmount);
       DestinationList[position] = eitem + "," + '$' + ecost;
       displayDestinationList();
-      displayTravelBucket();
+      displayVisitList();
       
       saveCookie();
   }
 
-function changeTravelBucket(position)
+function changeVisitList(position)
   {
     document.getElementById("MyCart").innerHTML = DestinationList[position];
-    var arrays = addtoTravelBucket[position];
+    var arrays = addtoVisitList[position];
     arrays = arrays.split(",");
       var e1 = arrays[0];
       var e2 = arrays[1];
@@ -246,35 +246,35 @@ function changeTravelBucket(position)
     var ReplacedAmount = e2.replace(/\$/g, '');
       var eitem = prompt("Please enter new item:", e1);
       var ecost = prompt("Please enter your name:", ReplacedAmount);
-      DestinationList[position] = eitem + "," + '$' + ecost;
+      addtoVisitList[position] = eitem + "," + '$' + ecost;
       displayDestinationList();
-      displayTravelBucket();
+      displayVisitList();
 
       saveCookie();
   }
 
 function addbacktoDestinationList(item, num)
   {
-    deleteTravelBucket(num);
+    deleteVisitList(num);
     DestinationList.push(item);
     
     displayDestinationList();
 
-    displayTravelBucket();
+    displayVisitList();
     clearFocus();
 
     saveCookie();
   }
 
-function addtoTravelBucket(item, num)
+function addtoVisitList(item, num)
   {
     document.getElementById("sharelist").innerHTML = ' ';
     deleteDestinationList(num);
-    addtoTravelBucket.push(item);
+    addtoVisitList.push(item);
     
     displayDestinationList();
 
-    displayTravelBucket();
+    displayVisitList();
     clearFocus();
 
     saveCookie();
@@ -285,17 +285,17 @@ function deleteDestinationList(position)
     document.getElementById("sharelist").innerHTML = ' ';
     DestinationList.splice(position, 1);
     displayDestinationList();
-    displayTravelBucket();
+    displayVisitList();
 
     saveCookie();
   }
 
-function deleteTravelBucket(position)
+function deleteVisitList(position)
   {
     document.getElementById("sharelist").innerHTML = ' ';
-    addtoTravelBucket.splice(position, 1);
+    addtoVisitList.splice(position, 1);
     displayDestinationList();
-    displayTravelBucket();
+    displayVisitList();
   }
 
 function clearFocus()
