@@ -1,7 +1,7 @@
 
 window.onload = function()
   {
-    alert("Welcome to the 'Destination List' App!\n\nCreated by Justin Secoquian!\n\nWith this app, you'll be able to list all of the places you want to visit or have visited already!");
+    alert("Welcome to the 'Travel Bucket' App!\n\nCreated by Justin Secoquian!\n\nWith this app, you'll be able to list all of the places you want to visit or have visited already!");
     populateDestinationListonload();
     displayDestinationList();
     clearFocus();
