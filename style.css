@@ -31,7 +31,7 @@ label {
     text-indent: 5px;
 }
 #wrapper {
-    width:300px;
+    width:350px;
     margin:20px auto;
     padding:20px;
     border-radius: 5px 5px 0 0;
@@ -53,7 +53,7 @@ input#remove {
     float:right;
     margin-bottom:20px;
     margin-right:5px;
-    background-color: #0a0f9e;
+    background-color: #9e0a0a;
     color: #ffffff;
     font-size:smaller;
     width: 65px;
