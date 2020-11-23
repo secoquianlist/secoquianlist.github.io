@@ -253,7 +253,6 @@ function displayDestinationLists()
       } else 
         {
           document.getElementById("MyList").innerHTML = '';
-          
           document.getElementById("sharebutton").innerHTML = ' ';
           document.getElementById("sharelist").innerHTML = ' ';
         }
