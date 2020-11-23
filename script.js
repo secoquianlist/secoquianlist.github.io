@@ -235,7 +235,7 @@ function displayDestinationLists()
 
     for (var i = 0; i < destinationlist.length; i++) 
       {
-        var btndelete =  ' <input class="button" id="remove" name="delete" type="button" value="Remove" onclick="deleteDestinationLists(' + i + ')" />';
+        var btndelete =  ' <input class="button" id="remove" name="delete" type="button" value="Remove" onclick="deleteDestinationList(' + i + ')" />';
         var btnupdate =  ' <input class="button" name="edit" type="button" value="Edit Item" onclick="changeDestinationList(' + i + ')" />';
         var arrays = destinationlist[i];
         arrays = "'"+arrays+"'";
@@ -248,6 +248,7 @@ function displayDestinationLists()
       }
     if (arrayLength > 0)
       {
+        document.getElementById("labels").innerHTML = 'Want To Go';
         document.getElementById("MyList").innerHTML = '<ul>' + TheList + '</ul>';
         document.getElementById("sharebutton").innerHTML = btnsharelist;
       } else 
