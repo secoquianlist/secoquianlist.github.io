@@ -190,7 +190,7 @@ function addbacktodestinationlist(item, num)
 function addtovisitlist(item, num)
   {
     document.getElementById("sharelist").innerHTML = ' ';
-    deleteDestinationList(num);
+    deleteDestinationLists(num);
     addtovisit.push(item);
     
     displayDestinationLists();
