@@ -23,7 +23,7 @@ body {
     background-color: #3b75cc;
 }
 #footer {
-    margin:2px; background:#d98d8d; color:#3b75cc;text-align:center;font-size:x-small;
+    margin:2px; color:#d98d8d;text-align:center;font-size:x-small;
     }
 label {
     float:left;
@@ -46,7 +46,6 @@ h1 {
     text-align:center;
 }
 input#item {
-    width:100;
     float:left;
     margin-bottom:5px;
 }
