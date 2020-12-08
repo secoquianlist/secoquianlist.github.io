@@ -62,7 +62,7 @@ function copyToClipboard(text)
     passbyurl.select();
     document.execCommand("copy");
     document.body.removeChild(passbyurl);
-    alert("URL has been copied. Ready to share: " + text);
+    alert("Added to your clipboard and ready to share!");
   }
 
 function about()
@@ -271,6 +271,7 @@ function displayVisitList()
         var arrays = addtovisit[i];
         arrays = "'"+arrays+"'";
         var btnaddlist =  '<label><input name="add" type="checkbox" id="adds" value="Add to Destination List" onclick="addbacktodestinationlist('+arrays+',' + i + ')" checked="checked"/>';
+        var btnsharelist = '<input class="button" id="shares" name="shares" type="submit" value="Share Destination List" onclick="share()" />';
         
         TheRow = "<li>" + addtovisit[i] + btndelete + ' ' + ' ' + btnaddlist + '</li>';
 
