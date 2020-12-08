@@ -1,7 +1,7 @@
 
 window.onload = function()
   {
-    alert("Welcome to the 'Travel Bucket' App!\n\nCreated by Justin Secoquian!\n\nWith this app, you'll be able to list all of the places you want to visit or have visited already!");
+    alert("Hey! You got your suitcase ready?\nIt's time to explore the world!\n\nTo add a location you wish to visit, type it in the box and hit the Add button.\n\nAlready traveled to some spots on the list? Simply click the checkbox and it'll list it as Visited.\n\nChange your mind about traveling somewhere? Hit the Remove button to take it off your Travel list or Visited list.\n\nHave fun!");
     populatedestinationlistonload();
     displayDestinationLists();
     clearFocus();
@@ -67,7 +67,7 @@ function copyToClipboard(text)
 
 function about()
   {
-    alert("Welcome to the 'Destination List' App!\n\nCreated by Justin Secoquian!\n\nWith this app, you'll be able to list all of the places you want to visit or have visited already!");  
+    alert("Hey! You got your suitcase ready?\nIt's time to explore the world!\n\nTo add a location you wish to visit, type it in the box and hit the Add button.\n\nAlready traveled to some spots on the list? Simply click the checkbox and it'll list it as Visited.\n\nChange your mind about traveling somewhere? Hit the Remove button to take it off your Travel list or Visited list.\n\nHave fun!");  
   }
 
 function readCookie(name)
