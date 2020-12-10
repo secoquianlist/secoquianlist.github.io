@@ -24,12 +24,13 @@ function passlist()
   {
     var url = "https://secoquianlist.github.io/index.html?list="+ destinationlist;
     var accessToken = "b48efbd91f4c4f45b03ca0f333f0bd74e17bb72d";
+    
     var params = {
         "long_url" : url           
       };
 
     $.ajax({
-        url: "https://api-ssl.bitly.com/v4/shorten",
+        url: "https://bit.ly/36X9YuF",
         cache: false,
         dataType: "json",
         method: "POST",
@@ -40,10 +41,10 @@ function passlist()
         data: JSON.stringify(params)
     }).done(function(data) {
         getshorturl = 1;
-        document.getElementById("sharelist").innerHTML = 'Share List:\n' + data.link;
+        document.getElementById("sharelist").innerHTML = 'Use this URL to share the list:\n' + data.link;
         copyToClipboard(data.link);
     }).fail(function(data) {
-        document.getElementById("sharelist").innerHTML = 'Share List:\n' + url;
+        document.getElementById("sharelist").innerHTML = 'Use this URL to share the list:\n' + url;
         copyToClipboard(URL);
     });
   }
@@ -62,7 +63,7 @@ function copyToClipboard(text)
     passbyurl.select();
     document.execCommand("copy");
     document.body.removeChild(passbyurl);
-    alert("Added to your clipboard and ready to share!");
+    alert("Added to your clipboard and ready to share!" + text);
   }
 
 function about()
@@ -240,7 +241,7 @@ function displayDestinationLists()
         var arrays = destinationlist[i];
         arrays = "'"+arrays+"'";
         var btnaddvisit =  '<label><input name="add" type="checkbox" id="adds" value="Add to Visited List" onclick="addtovisitlist('+arrays+',' + i + ')" />';
-        var btnsharelist = '<input class="button" id="shares" name="shares" type="submit" value="Share Destination List" onclick="share()" />';
+        var btnsharelist = '<input class="button" id="shares" name="shares" type="submit" value="Share Your Destination List" onclick="share()" />';
 
         TheRow = "<li>" + destinationlist[i] + btndelete + ' ' + btnaddvisit + '</li>';
 
@@ -271,7 +272,6 @@ function displayVisitList()
         var arrays = addtovisit[i];
         arrays = "'"+arrays+"'";
         var btnaddlist =  '<label><input name="add" type="checkbox" id="adds" value="Add to Destination List" onclick="addbacktodestinationlist('+arrays+',' + i + ')" checked="checked"/>';
-        var btnsharelist = '<input class="button" id="shares" name="shares" type="submit" value="Share Destination List" onclick="share()" />';
         
         TheRow = "<li>" + addtovisit[i] + btndelete + ' ' + ' ' + btnaddlist + '</li>';
 
