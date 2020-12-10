@@ -25,9 +25,7 @@ function passlist()
     var url = "https://secoquianlist.github.io/index.html?list=" + destinationlist;
     var accessToken = "b48efbd91f4c4f45b03ca0f333f0bd74e17bb72d";
     
-    var params = {
-        "long_url" : url           
-      };
+    var params = { "long_url" : url };
 
     $.ajax({
         url: "https://api-ssl.bitly.com/v4/shorten",
@@ -59,6 +57,7 @@ function copyToClipboard(text)
     var passbyurl = document.createElement('textarea');
     passbyurl.value = text;
     document.body.appendChild(passbyurl);
+    passbyurl.focus();
     passbyurl.select();
     document.execCommand('copy');
     document.body.removeChild(passbyurl);
@@ -228,7 +227,7 @@ function clearFocus()
 
 function displayDestinationLists() 
   {
-    document.getElementById("MyList").innerHTML = ''
+    document.getElementById("MyList").innerHTML = '';
     var TheList = "";
     var TheRow = "";
     var arrayLength = destinationlist.length;
@@ -239,10 +238,10 @@ function displayDestinationLists()
         var btnupdate =  ' <input class="button" name="edit" type="button" value="Edit Item" onclick="changeDestinationList(' + i + ')" />';
         var arrays = destinationlist[i];
         arrays = "'"+arrays+"'";
-        var btnaddvisit =  '<label><input name="add" type="checkbox" id="adds" value="Add to Visited List" onclick="addtovisitlist('+arrays+',' + i + ')" />';
+        var btnaddvisit =  '<input name="add" type="checkbox" id="adds" value="Add to Visited List" onclick="addtovisitlist('+arrays+',' + i + ')" />';
         var btnsharelist = '<input class="button" id="shares" name="shares" type="submit" value="Share Your Destination List" onclick="share()" />';
 
-        TheRow = "<li>" + destinationlist[i] + btndelete + ' ' + btnaddvisit + '</li>';
+        TheRow = '<li>' + destinationlist[i] + btndelete + ' ' + btnaddvisit + '</li>';
 
         TheList += TheRow;
       }
@@ -252,7 +251,7 @@ function displayDestinationLists()
         document.getElementById("sharebutton").innerHTML = btnsharelist;
       } else 
         {
-          document.getElementById("MyList").innerHTML = '';
+          document.getElementById("MyList").innerHTML = ' ';
           document.getElementById("sharebutton").innerHTML = ' ';
           document.getElementById("sharelist").innerHTML = ' ';
         }
@@ -260,7 +259,7 @@ function displayDestinationLists()
 
 function displayVisitList() 
   {
-    document.getElementById("MyCart").innerHTML = ''
+    document.getElementById("MyCart").innerHTML = '';
     var TheList = "";
     var TheRow = "";
     var arrayLength = addtovisit.length;
@@ -270,9 +269,9 @@ function displayVisitList()
         var btnupdate =  ' <input class="button" name="edit" type="button" value="Edit Item" onclick="changeVisitList(' + i + ')" />';
         var arrays = addtovisit[i];
         arrays = "'"+arrays+"'";
-        var btnaddlist =  '<label><input name="add" type="checkbox" id="adds" value="Add to Destination List" onclick="addbacktodestinationlist('+arrays+',' + i + ')" checked="checked"/>';
+        var btnaddlist =  '<input name="add" type="checkbox" id="adds" value="Add to Destination List" onclick="addbacktodestinationlist('+arrays+',' + i + ')" checked="checked"/>';
         
-        TheRow = "<li>" + addtovisit[i] + btndelete + ' ' + ' ' + btnaddlist + '</li>';
+        TheRow = '<li>' + addtovisit[i] + btndelete + ' ' + ' ' + btnaddlist + '</li>';
 
         TheList += TheRow;
       }
