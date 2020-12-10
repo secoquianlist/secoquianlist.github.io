@@ -1,7 +1,7 @@
 
 window.onload = function()
   {
-    alert("Hey! You got your suitcase ready?\nIt's time to explore the world!\n\nTo add a location you wish to visit, type it in the box and hit the Add button.\n\nAlready traveled to some spots on the list? Simply click the checkbox and it'll list it as Visited.\n\nChange your mind about traveling somewhere? Hit the Remove button to take it off your Travel list or Visited list.\n\nHave fun!");
+    about();
     populatedestinationlistonload();
     displayDestinationLists();
     clearFocus();
@@ -22,7 +22,7 @@ function get(name)
 
 function passlist()
   {
-    var url = "https://secoquianlist.github.io/index.html?list="+ destinationlist;
+    var url = "https://secoquianlist.github.io/index.html?list=" + destinationlist;
     var accessToken = "b48efbd91f4c4f45b03ca0f333f0bd74e17bb72d";
     
     var params = {
@@ -112,7 +112,7 @@ function delete_cookie(name)
 
 function populatedestinationlistonload()
   {
-    destinationist = [];
+    destinationlist = [];
     addtovisit= [];
 
     var y = readCookie('secoquianlist');
