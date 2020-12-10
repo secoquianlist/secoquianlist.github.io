@@ -56,7 +56,7 @@ function share()
 
 function copyToClipboard(text) 
   {
-    const passbyurl = document.createElement("textarea");
+    var passbyurl = document.createElement('textarea');
     passbyurl.value = text;
     document.body.appendChild(passbyurl);
     passbyurl.focus();
