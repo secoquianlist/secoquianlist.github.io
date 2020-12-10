@@ -56,12 +56,12 @@ function share()
 
 function copyToClipboard(text) 
   {
-    var passbyurl = document.createElement('textarea');
+    var passbyurl = document.createElement("textarea");
     passbyurl.value = text;
     document.body.appendChild(passbyurl);
     passbyurl.focus();
     passbyurl.select();
-    document.execCommand('copy');
+    document.execCommand("copy");
     document.body.removeChild(passbyurl);
     alert("Added to your clipboard and ready to share!" + text);
   }
