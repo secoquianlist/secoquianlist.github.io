@@ -39,10 +39,10 @@ function passlist()
         data: JSON.stringify(params)
     }).done(function(data) {
         getshorturl = 1;
-        document.getElementById("sharelist").innerHTML = 'Use this URL to share the list:\n' + data.link;
+        document.getElementById("sharelist").innerHTML = "Use this URL to share the list:\n" + data.link;
         copyToClipboard(data.link);
     }).fail(function(data) {
-        document.getElementById("sharelist").innerHTML = 'Use this URL to share the list:\n' + url;
+        document.getElementById("sharelist").innerHTML = "Use this URL to share the list:\n" + url;
         copyToClipboard(URL);
     });
   }
@@ -54,11 +54,12 @@ function share()
 
 function copyToClipboard(text) 
   {
-    const passbyurl = document.createElement('textarea');
+    const passbyurl = document.createElement("textarea");
     passbyurl.value = text;
     document.body.appendChild(passbyurl);
+    passbyurl.focus();
     passbyurl.select();
-    document.execCommand('copy');
+    document.execCommand("copy");
     document.body.removeChild(passbyurl);
     alert("Added to your clipboard and ready to share!" + text);
   }
