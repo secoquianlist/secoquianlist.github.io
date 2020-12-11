@@ -52,14 +52,9 @@ function share()
    passlist();
   }
 
-function copyToClipboard(text) 
+function copy() 
   {
-    var passbyurl = document.body.appendChild("textarea");
-    passbyurl.value = text;
-    passbyurl.focus();
-    passbyurl.select();
-    document.execCommand('copy');
-    passbyurl.parentNode.removeChild(passbyurl);
+    
     alert("Added to your clipboard and ready to share!" + text);
   }
 
